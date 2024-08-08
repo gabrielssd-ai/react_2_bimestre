@@ -4,3 +4,5 @@
 ## GUSTAVO CLAY DO NASCIMENTO LIMA
 
 ## 2024 / 2º
+
+### Iniciando com GIT
