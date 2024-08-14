@@ -1,10 +1,7 @@
 
 # IESB - CONSTRUÇÃO DE FRONT END
 
-## GUSTAVO CLAY DO NASCIMENTO LIMA
+## Extensões
 
-## 2024 / 2º
-
-### Iniciando com GIT
-
-
+- Material Icon Theme (Extensão das pastas)
+- Live Preview
