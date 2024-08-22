@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CADASTRO DE USUÁRIO</h1>
+    <form>
+        <label for="nome">Nome:</label>
+        <input type="text" placeholder="Gabriel" name="nome">
+        <br/><br/>
+        
+        <label for="telefone">Telefone:</label>
+        <input type="text" placeholder="(00) 00000-0000" name="telefone">
+        <br/><br/>
+        
+        <label for="email">Email:</label>
+        <input type="text" placeholder="teste@teste.com" name="email">
+        <br/><br/>
+        
+        <label for="senha">Senha:</label>
+        <input type="text" placeholder="" name="senha">
+        <br/><br/>
+        
+        <label for="sexo">Sexo:</label>
+        <input type="radio" name="sexo" value="1">Masculino
+        <input type="radio" name="sexo" value="2">Feminino
+        <br/><br/>
+        
+        <label for="UF">UF:</label>
+        <select name="UF">
+            <option>Selecione</option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+        </select>
+        <fieldset>
+            <legend>Hoobies</legend>
+            <input type="checkbox">
+            <label for="futebol">Futebol</label>
+            <input type="checkbox">
+            <label for="futebol">Xadrez</label>
+            <input type="checkbox">
+            <label for="futebol">Esportes</label>
+            <input type="checkbox">
+            <label for="futebol">Musica</label>
+            <input type="checkbox">
+            <label for="futebol">Cinema</label>
+            <input type="checkbox">
+            <label for="futebol">Leitura</label>
+        </fieldset>
+        <br/>
+        <label for="observações">Observações:</label>
+        <textarea name="observações" ></textarea>
+        <br/>
+        <button type="submit">Voltar</button>
+        <button type="reset">Limpar</button>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>
