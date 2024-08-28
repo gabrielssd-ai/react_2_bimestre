@@ -16,21 +16,21 @@
 
 ### Criar projeto NEXT (React)
 
-Instalar create-next-app
+- Instalar create-next-app
 
-```
+```bash
 npm install -g create-next-app
 ```
 
-Criar projeto
+- Criar projeto
 
-```
+```bash
 npx create-next-app nome_projeto
 ```
 
-Perguntas
+- Perguntas
 
-```
+```bash
 ✔ Would you like to use TypeScript? … xNo / Yes
 
 ✔ Would you like to use ESLint? … xNo / Yes
@@ -42,4 +42,10 @@ Perguntas
 ✔ Would you like to use App Router? (recommended) … No / xYes
 
 ✔ Would you like to customize the default import alias (@/*)? … xNo / Yes
+```
+
+- Executar o projeto
+
+```bash
+npm run dev
 ```
