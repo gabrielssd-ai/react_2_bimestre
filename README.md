@@ -51,3 +51,9 @@ npx create-next-app nome_projeto
 ```bash
 npm run dev
 ```
+
+- Instalar React Boostrap
+
+```bash
+npm install react-bootstrap bootstrap
+```
