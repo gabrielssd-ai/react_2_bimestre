@@ -17,6 +17,8 @@ export default function Pagina(props) {
                     <Nav className="me-auto">
                         <Nav.Link href="/fundamentos">Fundamentos</Nav.Link>
                         <Nav.Link href="/listas">Listas</Nav.Link>
+                        <Nav.Link href="/objetos">Objetos</Nav.Link>
+                        <Nav.Link href="/estados">Estados</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
