@@ -515,3 +515,86 @@ export default function HomePage() {
 - Não versione arquivos .env.local: Use o .gitignore para garantir que essas informações sensíveis não sejam enviadas para o Git.
 - Use o prefixo NEXT_PUBLIC_: Somente quando a variável de ambiente for necessária no lado do cliente.
 - Mantenha as variáveis seguras: Evite expor informações confidenciais, como chaves de API e senhas, no cliente.
+
+## **4 - API's The MovieDB**
+
+## Api
+
+- Documentação: https://developer.themoviedb.org/reference/intro/getting-started
+- URL Base: https://api.themoviedb.org/3 
+
+## Endpoints
+
+### Imagens
+
+- https://image.tmdb.org/t/p/w500/ + path
+
+### Filmes
+
+Filmes Populares
+
+- /movie/popular?language=pt-BR
+
+Filmes Melhores Avaliados
+
+- /movie/top_rated?language=pt-BR
+
+Filmes em Cartaz
+
+- /movie/now_playing?language=pt-BR
+
+Filmes Lançamento
+
+- /movie/upcoming?language=pt-BR
+
+Detalhes do Filme
+
+- /movie/id?language=pt-BR
+
+Elenco do Filme
+
+- /movie/id/credits?language=pt-BR
+
+### Séries
+
+Séries Populares
+
+- /tv/popular?language=pt-BR
+
+Séries Melhores Avaliados
+
+- /tv/top_rated?language=pt-BR
+
+Séries na TV
+
+- /tv/airing_today?language=pt-BR
+
+Séries exibidas hoje
+
+- /tv/on_the_air?language=pt-BR
+
+Detalhes da Série
+
+- /tv/id?language=pt-BR
+
+### Atores
+
+Lista de Atores
+
+- /person/popular?language=pt-BR
+
+Detalhes do Ator
+
+- /person/id?language=pt-BR
+
+Filmes do Ator
+
+- /person/id/movie_credits?language=pt-BR
+
+Séries do Ator
+
+- /person/id/tv_credits?language=pt-BR
+
+Imagens do Ator
+
+- /person/id/images?language=pt-BR
