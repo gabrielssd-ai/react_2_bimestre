@@ -30,7 +30,7 @@ export default function page() {
 
   return (
 
-    <Pagina titulo="Filmes">
+    <Pagina titulo="Filmes Populares">
 
       <Row md={4}>
 
@@ -44,7 +44,7 @@ export default function page() {
                   <p><b>Nota:</b> {filme.vote_average} ⭐</p>
                 </Card.Body>
                 <Card.Footer className='text-end'>
-                  <Button>Detalhes</Button>
+                  <Button href={'/filmes/' + filme.id} >Detalhes</Button>
                 </Card.Footer>
               </Card>
             </Col>
