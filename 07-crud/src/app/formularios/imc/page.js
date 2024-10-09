@@ -13,9 +13,34 @@ export default function ImcPage() {
   const [peso, setPeso] = useState('0')
   const [altura, setAltura] = useState('0.0')
 
+  const [imc, setImc] = useState(0)
+  const [classificacao, setClassificacao] = useState('')
+
   function calcular(event) {
     event.preventDefault()
-    console.log({ nome, genero, peso, altura })
+
+    const pesoNumerico = Number(peso)
+    const alturaNumerico = Number(altura)
+
+    console.log({ nome, genero, pesoNumerico, alturaNumerico })
+
+    const resultadoIMC = (pesoNumerico / (alturaNumerico * alturaNumerico)).toFixed(1)
+
+    setImc(resultadoIMC)
+
+    if (imc < 18.5) {
+      setClassificacao('Abaixo do peso')
+    } else if (imc >= 18.5 && imc < 24.9) {
+      setClassificacao('Peso Normal')
+    } else if (imc >= 25 && imc < 29.9) {
+      setClassificacao('Sobrepeso')
+    } else if (imc >= 30 && imc < 35) {
+      setClassificacao('Obesidade Grau I')
+    } else if (imc >= 35) {
+      setClassificacao('Obesidade Morbida')
+    }
+
+    console.log({ imc, classificacao })
 
   }
 
