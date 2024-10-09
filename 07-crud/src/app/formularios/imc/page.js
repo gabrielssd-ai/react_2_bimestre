@@ -2,11 +2,13 @@
 
 import Pagina from "@/components/Pagina";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, CardImg, Form, Modal } from "react-bootstrap";
 import { FaCheck } from "react-icons/fa";
 
 
 export default function ImcPage() {
+
+  const [showModal, setShowModal] = useState(false)
 
   const [nome, setNome] = useState('')
   const [genero, setGenero] = useState('')
@@ -42,10 +44,17 @@ export default function ImcPage() {
 
     console.log({ imc, classificacao })
 
+    setShowModal(true)
+
   }
 
   return (
     <Pagina titulo="Calculadora de IMC">
+
+      {/* Imagem da tabela do IMC */}
+      <div>
+        <CardImg src="/imc/imc.png" />
+      </div>
 
       {/* Formulário */}
       <Form onSubmit={calcular}>
@@ -106,6 +115,24 @@ export default function ImcPage() {
         </Form.Group>
 
       </Form>
+
+      {/* Modal do Resultado */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Resultado</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>O seu imc é {imc}</p>
+          <p>Sua classificação é {classificacao}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)} >
+            Fechar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
 
     </Pagina>
   )
