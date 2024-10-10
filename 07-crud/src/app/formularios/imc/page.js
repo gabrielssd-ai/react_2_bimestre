@@ -63,6 +63,7 @@ export default function ImcPage() {
           <Form.Label>Nome:</Form.Label>
           <Form.Control
             type="text"
+            required
             name="nome"
             value={nome}
             onChange={e => setNome(e.target.value)}
