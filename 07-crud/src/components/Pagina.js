@@ -16,6 +16,7 @@ export default function Pagina({ titulo, children }) {
               <NavDropdown.Item href="/formularios/nome">Nome</NavDropdown.Item>
               <NavDropdown.Item href="/formularios/imc">Calculadora de IMC</NavDropdown.Item>
               <NavDropdown.Item href="/formularios/imcformik">Calculadora de IMC - Formik</NavDropdown.Item>
+              <NavDropdown.Item href="/formularios/cadastro">Cadastro de Aluno</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Container>
