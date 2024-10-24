@@ -3,21 +3,29 @@
 import Pagina from '@/components/Pagina'
 import apiLocalidades from '@/services/apiLocalidades'
 import { Formik } from 'formik'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Button, Col, Form, Row } from 'react-bootstrap'
-import { FaCheck } from "react-icons/fa"
+import { FaArrowLeft, FaCheck } from "react-icons/fa"
+import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-
 export default function FaculdadeFormPage() {
+
+  // router -> hook para navegação de telas
+  const router = useRouter()
 
   // Criar estados(react) para armazenar os dados dos selects
   const [paises, setPaises] = useState([])
   const [estados, setEstados] = useState([])
   const [cidades, setCidades] = useState([])
 
+  // Buscar a lista de faculdades no localStorage, se não existir, inicializa uma lista vazia
+  const faculdades = JSON.parse(localStorage.getItem('faculdades')) || []
+
   // carregar os dados na inicialização da página
   useEffect(() => {
+    // buscar os paises da api, imprimi no log e guarda no armazenamento
     apiLocalidades.get('/paises').then(response => {
       console.log("paises >>> ", response.data)
       setPaises(response.data)
@@ -32,13 +40,23 @@ export default function FaculdadeFormPage() {
 
   // função para salvar os dados do form
   function salvar(dados) {
+    // gerar um ID (Identificador unico)
+    dados.id = v4()
     console.log(dados)
+
+    // Adiciona a nova faculdade na lista de faculdades
+    faculdades.push(dados)
+    // Substitui a lista antiga pela nova no localStorage
+    localStorage.setItem('faculdades', JSON.stringify(faculdades))
+
+    alert("Faculdade criada com sucesso!")
+    router.push("/faculdades")
   }
 
   // Campos do form e valores iniciais(default)
   const initialValues = {
     nome: '',
-    pais: '',
+    pais: 'Brasil',
     estado: '',
     cidade: '',
     endereco: ''
@@ -68,11 +86,21 @@ export default function FaculdadeFormPage() {
         {
           // os valores e funções do formik
           ({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
-            // construir o form
+
             // ações do formulário
             // debug
             // console.log("DEBUG >>>")
             // console.log({values, errors, touched})
+
+            useEffect(() => {
+              console.log("Mexeu no estado >>>")
+              if (values.estado !== '') {
+                apiLocalidades.get(`/estados/${values.estado}/municipios`).then(response => {
+                  console.log("cidades >>>", response.data)
+                  setCidades(response.data)
+                })
+              }
+            }, [values.estado])
 
 
             // retorno com o template jsx do formulário
@@ -135,6 +163,7 @@ export default function FaculdadeFormPage() {
                       value={values.estado}
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      disabled={values.pais !== 'Brasil'}
                       isValid={touched.estado && !errors.estado}
                       isInvalid={touched.estado && errors.estado}
                     >
@@ -151,11 +180,12 @@ export default function FaculdadeFormPage() {
                       value={values.cidade}
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      disabled={values.pais !== 'Brasil'}
                       isValid={touched.cidade && !errors.cidade}
                       isInvalid={touched.cidade && errors.cidade}
                     >
                       <option value="">Selecione</option>
-                      <option value="Ceilândia">Ceilândia</option>
+                      {cidades.map(cidade => <option value={cidade.nome}>{cidade.nome}</option>)}
                     </Form.Select>
                     <Form.Control.Feedback type='invalid'>{errors.cidade}</Form.Control.Feedback>
                   </Form.Group>
@@ -164,6 +194,7 @@ export default function FaculdadeFormPage() {
 
                 {/* botões */}
                 <Form.Group className='text-end'>
+                  <Button className='me-2' href='/faculdades'><FaArrowLeft /> Voltar</Button>
                   <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
                 </Form.Group>
 
