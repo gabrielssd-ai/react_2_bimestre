@@ -598,3 +598,188 @@ Séries do Ator
 Imagens do Ator
 
 - /person/id/images?language=pt-BR
+---
+
+# 2º Bimestre
+
+## **1 - Bibliotecas Adicionais**
+
+### Comando para Instalar as Bibliotecas
+
+Para instalar todas essas bibliotecas, execute o seguinte comando:
+
+```bash
+npm install formik react-icons react-input-mask uuid yup
+```
+
+### Yup
+
+Yup é uma biblioteca de validação de esquemas JavaScript. Ela é frequentemente usada em conjunto com Formik para validar dados de formulários de maneira declarativa.
+
+#### Exemplo de Uso
+
+```jsx
+import * as Yup from 'yup';
+
+const schema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Required'),
+  password: Yup.string().min(8, 'Password too short').required('Required'),
+});
+
+schema
+  .validate({ email: 'test@example.com', password: 'password123' })
+  .then(() => {
+    console.log('Validation passed');
+  })
+  .catch(err => {
+    console.log(err.errors);
+  });
+```
+
+### Formik
+
+Formik é uma biblioteca para construção de formulários em React. Ela facilita o gerenciamento de estados e validação de formulários, tornando o desenvolvimento mais eficiente. Pode ser utilizada junto a biliboteca Yup para validação de dados.
+
+#### Exemplo de Uso
+
+```jsx
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { Form, Button } from 'react-bootstrap';
+
+const MeuFormulario = () => (
+
+  const validationSchema = Yup.object({
+    email: Yup.string().email('Invalid email').required('Required'),
+  });
+
+  <Formik
+    initialValues={{ email: '' }}
+    validate={validationSchema}
+    onSubmit={values => console.log(values)}
+  >
+    {({ values, errors, touched, handleBlur, handleSubmit, handleReset, handleChange }) => (
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>E-mail:</Form.Label>
+          <Form.Control
+            name='email'
+            type='email'
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            isValid={touched.email && !errors.email}
+            isInvalid={touched.email && !!errors.email}
+          />
+          <Form.Control.Feedback type='invalid'>{errors.email}</Form.Control.Feedback>
+        </Form.Group>
+        <Button type='submit' variant='success'>Enviar</Button>
+      </Form>
+    )}
+  </Formik>
+);
+```
+
+### React Icons
+
+React Icons permite a utilização de ícones populares em projetos React. Ele oferece uma vasta coleção de ícones de diversas bibliotecas, como Font Awesome, Material Design e outros.
+
+#### Exemplo de Uso
+
+```jsx
+import { FaBeer } from 'react-icons/fa';
+
+const MeuComponente = () => (
+  <div>
+    <h3> Vamos tomar uma cerveja? <FaBeer /> </h3>
+  </div>
+);
+```
+
+### React Input Mask
+
+React Input Mask é uma biblioteca que permite criar máscaras de entrada para campos de formulário. Isso é útil para formatação de dados como números de telefone, CPF, datas, etc.
+
+#### Exemplo de Uso
+
+```jsx
+import {ReactInputMask} from 'react-input-mask';
+
+...
+
+<Form.Group as={Col} md={6}>
+  <Form.Label>Telefone:</Form.Label>
+  <Form.Control as={ReactInputMask}
+    mask={"(99)99999-9999"}
+    placeholder='(99)99999-9999'
+    name='telefone'
+    type='text'
+    value={values.telefone}
+    onChange={handleChange}
+    onBlur={handleBlur}
+    isValid={touched.telefone && !errors.telefone}
+    isInvalid={touched.telefone && !!errors.telefone}
+  />
+  <Form.Control.Feedback type='invalid'>{errors.telefone}</Form.Control.Feedback>
+</Form.Group>
+```
+
+### UUID
+
+UUID é uma biblioteca para gerar identificadores únicos universais (UUIDs). Eles são amplamente utilizados para identificar de forma única objetos em um sistema distribuído.
+
+#### Exemplo de Uso
+
+```jsx
+import { v4 as uuidv4 } from 'uuid';
+
+const idUnico = uuidv4();
+console.log(idUnico); // Exemplo de saída: '110ec58a-a0f2-4ac4-8393-c866d813b8d1'
+```
+
+## **2 - Utilizando o localStorage**
+
+O `localStorage` é uma API do navegador que permite armazenar dados de forma persistente no lado do cliente. Os dados armazenados no `localStorage` permanecem mesmo após o fechamento do navegador.
+
+### Armazenando Dados
+
+Para armazenar dados no `localStorage`, você pode usar o método `setItem`:
+
+```js
+localStorage.setItem('chave', 'valor');
+```
+
+### Recuperando Dados
+
+Para recuperar dados do `localStorage`, use o método `getItem`:
+
+```js
+const valor = localStorage.getItem('chave');
+```
+
+### Removendo Dados
+
+Para remover um item do `localStorage`, use o método `removeItem`:
+
+```js
+localStorage.removeItem('chave');
+```
+
+### Exemplo Prático
+
+Aqui está um exemplo de como usar o `localStorage` para armazenar e recuperar uma lista de faculdades:
+
+```js
+// Armazenar lista de faculdades
+const faculdades = [
+  { nome: 'Faculdade A', endereco: 'Endereço A' },
+  { nome: 'Faculdade B', endereco: 'Endereço B' }
+];
+localStorage.setItem('faculdades', JSON.stringify(faculdades));
+
+// Recuperar lista de faculdades
+const faculdadesArmazenadas = JSON.parse(localStorage.getItem('faculdades'));
+console.log(faculdadesArmazenadas);
+```
+
+Neste exemplo, a lista de faculdades é armazenada como uma string JSON e depois recuperada e convertida de volta para um array de objetos.
