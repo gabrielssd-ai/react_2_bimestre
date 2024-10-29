@@ -10,8 +10,7 @@ import { FaArrowLeft, FaCheck } from "react-icons/fa"
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-export default function FaculdadeFormPage() {
-
+export default function FaculdadeFormPage(props) {
   // router -> hook para navegação de telas
   const router = useRouter()
 
@@ -22,6 +21,14 @@ export default function FaculdadeFormPage() {
 
   // Buscar a lista de faculdades no localStorage, se não existir, inicializa uma lista vazia
   const faculdades = JSON.parse(localStorage.getItem('faculdades')) || []
+
+  // Recuperando id para edição
+  const id = props.searchParams.id
+  console.log(props.searchParams.id)
+  // Buscar na lista a faculdade com o ID recebido no parametro
+  const faculdadeEditada = faculdades.find(item => item.id == id)
+  console.log(faculdadeEditada)
+
 
   // carregar os dados na inicialização da página
   useEffect(() => {
@@ -40,14 +47,20 @@ export default function FaculdadeFormPage() {
 
   // função para salvar os dados do form
   function salvar(dados) {
-    // gerar um ID (Identificador unico)
-    dados.id = v4()
-    console.log(dados)
-
-    // Adiciona a nova faculdade na lista de faculdades
-    faculdades.push(dados)
-    // Substitui a lista antiga pela nova no localStorage
-    localStorage.setItem('faculdades', JSON.stringify(faculdades))
+    // Se faculdadeEditada existe, mudar os dados e gravar no localStorage
+    if(faculdadeEditada){
+      Object.assign(faculdadeEditada, dados)
+      // Substitui a lista antiga pela nova no localStorage
+      localStorage.setItem('faculdades', JSON.stringify(faculdades))
+    } else {
+      // se faculdadeEditada não existe, é criação de uma nova
+      // gerar um ID (Identificador unico)
+      dados.id = v4()
+      // Adiciona a nova faculdade na lista de faculdades
+      faculdades.push(dados)
+      // Substitui a lista antiga pela nova no localStorage
+      localStorage.setItem('faculdades', JSON.stringify(faculdades))
+    }
 
     alert("Faculdade criada com sucesso!")
     router.push("/faculdades")
@@ -78,7 +91,9 @@ export default function FaculdadeFormPage() {
 
       <Formik
         // Atributos do formik
-        initialValues={initialValues}
+        // Se for edição, coloca os dados da faculdadeEditada
+        // Se for nova, colocar o initialValues com os valores vazios
+        initialValues={faculdadeEditada || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
       >
