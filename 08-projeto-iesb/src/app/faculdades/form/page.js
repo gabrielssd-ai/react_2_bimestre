@@ -11,6 +11,7 @@ import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
 export default function FaculdadeFormPage(props) {
+
   // router -> hook para navegação de telas
   const router = useRouter()
 

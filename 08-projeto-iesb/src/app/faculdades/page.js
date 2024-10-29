@@ -10,6 +10,7 @@ export default function FaculdadesPage() {
 
   const [faculdades, setFaculdades] = useState([])
 
+  // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
     const faculdadesLocalStorage = JSON.parse(localStorage.getItem("faculdades")) || []
