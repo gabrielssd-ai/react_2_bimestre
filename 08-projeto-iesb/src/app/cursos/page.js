@@ -65,7 +65,6 @@ export default function CursosPage() {
                   {/* Botões das ações */}
                   <Button className='me-2' href={`/cursos/form?id=${curso.id}`}><FaPen /></Button>
                   <Button variant='danger' onClick={() => excluir(curso)}><FaTrash /></Button>
-
                 </td>
               </tr>
             )
