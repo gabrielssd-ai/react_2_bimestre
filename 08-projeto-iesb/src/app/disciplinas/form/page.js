@@ -41,11 +41,7 @@ export default function DisciplinaFormPage(props) {
   }
 
   // Função para filtrar professores com base no curso selecionado
-  function handleCursoChange(event, handleChange) {
-    const cursoSelecionado = event.target.value
-    handleChange(event)
-    setProfessoresFiltrados(professores.filter(professor => professor.curso === cursoSelecionado))
-  }
+  
 
   const initialValues = {
     nome: '',
@@ -131,7 +127,7 @@ export default function DisciplinaFormPage(props) {
                   isInvalid={touched.curso && errors.curso}
                 >
                   <option value=''>Selecione</option>
-                  {cursos.map(curso => <option key={curso.id} value={curso.nome}>{curso.nome}</option>)}
+                  {cursos.map(curso => <option  value={curso.nome}>{curso.nome}</option>)}
                 </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.curso}</Form.Control.Feedback>
               </Form.Group>
@@ -148,10 +144,8 @@ export default function DisciplinaFormPage(props) {
                   isValid={touched.professor && !errors.professor}
                   isInvalid={touched.professor && errors.professor}
                 >
-                  <option value=''>Selecione</option>
-                  {professoresFiltrados.map(professor => (
-                    <option key={professor.id} value={professor.nome}>{professor.nome}</option>
-                  ))}
+                   <option value=''>Selecione</option>
+                   {professores.map(professor => <option  value={professor.nome}>{professor.nome}</option>)}
                 </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.professor}</Form.Control.Feedback>
               </Form.Group>
